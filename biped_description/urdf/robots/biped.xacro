@@ -1,0 +1,272 @@
+<?xml version="1.0" ?>
+<robot name="biped" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+<xacro:include filename="$(find biped_description)/urdf/robots/materials.xacro" />
+<xacro:include filename="$(find biped_description)/urdf/robots/biped.ros2control" />
+<xacro:include filename="$(find biped_description)/urdf/robots/biped.gazebo" />
+<xacro:include filename="$(find biped_description)/urdf/control/biped_ros2_control.urdf.xacro"/>
+<xacro:include filename="$(find biped_description)/urdf/control/gazebo_sim_ros2_control.urdf.xacro"/>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.03000000000000046 -0.05979593496853414 0.004864752592657503" rpy="0 0 0"/>
+    <mass value="0.596469253198544"/>
+    <inertia ixx="0.000407" iyy="0.001026" izz="0.000804" ixy="0.0" iyz="1.4e-05" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.05 0.05 0.1"/> 
+    </geometry>
+  </collision>
+</link>
+
+<link name="l_hip_link_1">
+  <inertial>
+    <origin xyz="-0.021972074736058902 0.03692601945677904 3.3809230539884804e-05" rpy="0 0 0"/>
+    <mass value="0.23839991097458857"/>
+    <inertia ixx="0.000111" iyy="8.4e-05" izz="0.00011" ixy="1e-05" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.05986 0.04025 0.0003" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/l_hip_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.05986 0.04025 0.0003" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.05 0.05 0.1"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="l_hip_roll__1">
+  <inertial>
+    <origin xyz="-0.02891673482480947 0.031508090951978845 -0.07773431971219692" rpy="0 0 0"/>
+    <mass value="0.4778310159751661"/>
+    <inertia ixx="0.00221" iyy="0.002059" izz="0.000339" ixy="2.1e-05" iyz="0.000441" ixz="-0.000105"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.10186 -2.7e-05 0.000256" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/l_hip_roll__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.10186 -2.7e-05 0.000256" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.05 0.05 0.1"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="l_knee_link_1">
+  <inertial>
+    <origin xyz="-0.019507018919871555 -0.029273752074596843 -0.09345213885570233" rpy="0 0 0"/>
+    <mass value="0.10721414059204377"/>
+    <inertia ixx="0.000512" iyy="0.000465" izz="5.9e-05" ixy="-2e-06" iyz="-0.000141" ixz="-5e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.149344 -0.06395 0.222442" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/l_knee_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.149344 -0.06395 0.222442" rpy="0 0 0"/>
+    <geometry>
+     <box size="0.05 0.05 0.1"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="l_foot_link__1">
+  <inertial>
+    <origin xyz="3.782463971202521e-07 1.2653056471927234e-05 -0.007004050535626083" rpy="0 0 0"/>
+    <mass value="0.01758935163575521"/>
+    <inertia ixx="1.4e-05" iyy="1e-06" izz="1.4e-05" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.169344 -8.8e-05 0.427015" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/l_foot_link__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.169344 -8.8e-05 0.427015" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.05 0.05 0.1"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="r_hip_link_1">
+  <inertial>
+    <origin xyz="0.021972074736058764 0.036926019456778696 3.380923053822375e-05" rpy="0 0 0"/>
+    <mass value="0.2383999109745883"/>
+    <inertia ixx="0.000111" iyy="8.4e-05" izz="0.00011" ixy="-1e-05" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.00014 0.04025 0.0003" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/r_hip_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.00014 0.04025 0.0003" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.05 0.05 0.1"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="r_hip_roll__1">
+  <inertial>
+    <origin xyz="0.02891673482480684 0.031508090951978915 -0.07773431971220009" rpy="0 0 0"/>
+    <mass value="0.47783101597516553"/>
+    <inertia ixx="0.00221" iyy="0.002059" izz="0.000339" ixy="-2.1e-05" iyz="0.000441" ixz="0.000105"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.04186 -2.7e-05 0.000256" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/r_hip_roll__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.04186 -2.7e-05 0.000256" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.05 0.05 0.1"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="r_knee_link_1">
+  <inertial>
+    <origin xyz="0.019507018919861743 -0.029273752074596558 -0.09345213885570666" rpy="0 0 0"/>
+    <mass value="0.10721414059204377"/>
+    <inertia ixx="0.000512" iyy="0.000465" izz="5.9e-05" ixy="2e-06" iyz="-0.000141" ixz="5e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.089344 -0.06395 0.222442" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/r_knee_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.089344 -0.06395 0.222442" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.05 0.05 0.1"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="r_foot_link__1">
+  <inertial>
+    <origin xyz="-3.7767476271377554e-07 1.2644456614365469e-05 -0.00700406417380417" rpy="0 0 0"/>
+    <mass value="0.01758928525196201"/>
+    <inertia ixx="1.4e-05" iyy="1e-06" izz="1.4e-05" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.109344 -8.8e-05 0.427015" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/r_foot_link__1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.109344 -8.8e-05 0.427015" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.05 0.05 0.1"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="l_abduction" type="continuous">
+  <origin xyz="-0.05986 -0.04025 -0.0003" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="l_hip_link_1"/>
+  <axis xyz="0.0 1.0 -0.0"/>
+  <dynamics damping="2.0" friction="0.5"/>
+</joint>
+
+<joint name="l_hip_roll" type="continuous">
+  <origin xyz="-0.042 0.040277 4.4e-05" rpy="0 0 0"/>
+  <parent link="l_hip_link_1"/>
+  <child link="l_hip_roll__1"/>
+  <axis xyz="-1.0 -0.0 0.0"/>
+  <dynamics damping="2.0" friction="0.5"/>
+</joint>
+
+<joint name="l_knee_roll" type="continuous">
+  <origin xyz="-0.047484 0.063923 -0.222186" rpy="0 0 0"/>
+  <parent link="l_hip_roll__1"/>
+  <child link="l_knee_link_1"/>
+  <axis xyz="-1.0 -0.0 0.0"/>
+  <dynamics damping="2.0" friction="0.5"/>
+</joint>
+
+<joint name="l_foot_roll" type="continuous">
+  <origin xyz="-0.02 -0.063862 -0.204573" rpy="0 0 0"/>
+  <parent link="l_knee_link_1"/>
+  <child link="l_foot_link__1"/>
+  <axis xyz="-1.0 -0.0 0.0"/>
+  <dynamics damping="2.0" friction="0.5"/>
+</joint>
+
+<joint name="r_abduction" type="continuous">
+  <origin xyz="-0.00014 -0.04025 -0.0003" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="r_hip_link_1"/>
+  <axis xyz="0.0 1.0 -0.0"/>
+  <dynamics damping="2.0" friction="0.5"/>
+</joint>
+
+<joint name="r_hip_roll" type="continuous">
+  <origin xyz="0.042 0.040277 4.4e-05" rpy="0 0 0"/>
+  <parent link="r_hip_link_1"/>
+  <child link="r_hip_roll__1"/>
+  <axis xyz="1.0 -0.0 -0.0"/>
+  <dynamics damping="2.0" friction="0.5"/>
+</joint>
+
+<joint name="r_knee_roll" type="continuous">
+  <origin xyz="0.047484 0.063923 -0.222186" rpy="0 0 0"/>
+  <parent link="r_hip_roll__1"/>
+  <child link="r_knee_link_1"/>
+  <axis xyz="1.0 0.0 -0.0"/>
+  <dynamics damping="2.0" friction="0.5"/>
+</joint>
+
+<joint name="r_foot_roll" type="continuous">
+  <origin xyz="0.02 -0.063862 -0.204573" rpy="0 0 0"/>
+  <parent link="r_knee_link_1"/>
+  <child link="r_foot_link__1"/>
+  <axis xyz="-1.0 -0.0 0.0"/>
+  <dynamics damping="2.0" friction="0.5"/>
+</joint>
+
+<link name="world"/>
+
+<joint name="world_to_base" type="fixed">
+  <parent link="world"/>
+  <child link="base_link"/>
+</joint>
+
+
+</robot>

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<robot name="biped" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:arg name="prefix" default=""/>
+
+<material name="silver">
+  <color rgba="0.700 0.700 0.700 1.000"/>
+</material>
+
+</robot>
