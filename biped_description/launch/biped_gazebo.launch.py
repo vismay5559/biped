@@ -1,67 +1,106 @@
+#!/usr/bin/env python3
+
 import os
-from ament_index_python.packages import get_package_share_directory
+import subprocess
+
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
-import xacro
-from os.path import join
+from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
 
-    pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
-    pkg_ros_gz_rbot = get_package_share_directory('biped_description')
+    pkg_ros_gz_sim = FindPackageShare('ros_gz_sim').find('ros_gz_sim')
+    pkg_description = FindPackageShare('biped_description').find('biped_description')
 
+    # Gazebo Sim
+    gazebo = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')
+        ),
+        launch_arguments={'gz_args': '-r empty.sdf'}.items()
+    )
 
-    robot_description_file = os.path.join(pkg_ros_gz_rbot, 'urdf', 'robots', 'biped.xacro')
-    ros_gz_bridge_config = os.path.join(pkg_ros_gz_rbot, 'rviz', 'ros_gz_bridge_gazebo.yaml')
-    
-    robot_description_config = xacro.process_file(robot_description_file)
-    robot_description = {'robot_description': robot_description_config.toxml()}
-
-   
+    # Robot State Publisher
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        name='robot_state_publisher',
-        output='screen',
-        parameters=[robot_description],
+        parameters=[{
+            'use_sim_time': True,
+            'robot_description': subprocess.check_output([
+                'xacro',
+                os.path.join(pkg_description, 'urdf', 'robots', 'biped.xacro')
+            ]).decode()
+        }]
     )
 
-   
-    gazebo = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(join(pkg_ros_gz_sim, "launch", "gz_sim.launch.py")),
-        launch_arguments={"gz_args": "-r -v 4 empty.sdf"}.items()
-    )
-
-    spawn_robot = TimerAction(
-        period=5.0,  
-        actions=[Node(
-            package='ros_gz_sim',
-            executable='create',
-            arguments=[
-                "-topic", "/robot_description",
-                "-name", "biped",
-                "-allow_renaming", "false",  # prevents "_1" duplicate
-                "-x", "0.0",
-                "-y", "0.0",
-                "-z", "0.32",
-                "-Y", "0.0"
-            ],
-            output='screen'
-        )]
-    )
-
-    ros_gz_bridge = Node(
-        package='ros_gz_bridge',
-        executable='parameter_bridge',
-        parameters=[{'config_file': ros_gz_bridge_config}],
+    # Spawn Robot
+    spawn_biped = Node(
+        package='ros_gz_sim',
+        executable='create',
+        arguments=[
+            '-name', 'biped',
+            '-topic', '/robot_description',
+            '-z', '0.65',
+            '-allow_renaming', 'true'
+        ],
         output='screen'
     )
 
+    # ROS-GZ Bridge - Updated with IMU mapping
+    ros_gz_bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=[
+            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+            '/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
+            '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',
+            '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU'
+        ],
+        parameters=[{'use_sim_time': True}],
+        output='screen'
+    )
+
+    # Controller Spawners
+    spawn_jsb = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_state_broadcaster', '--param', 'use_sim_time:=true'],
+        output='screen'
+    )
+
+    spawn_biped_ctrl = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['biped_joint_trajectory_controller', '--param', 'use_sim_time:=true'],
+        output='screen'
+    )
+
+    controllers_delayed = TimerAction(
+        period=5.0,
+        actions=[spawn_jsb, spawn_biped_ctrl]
+    )
+
+    # RViz2
+    rviz = Node(
+        package='rviz2',
+        executable='rviz2',
+        arguments=['-d', os.path.join(pkg_description, 'rviz', 'display.rviz')],
+        parameters=[{'use_sim_time': True}],
+        output='screen'
+    )
+
+    rviz_delayed = TimerAction(
+        period=7.0,
+        actions=[rviz]
+    )
+
     return LaunchDescription([
-        gazebo,
-        spawn_robot,
         ros_gz_bridge,
+        gazebo,
         robot_state_publisher,
+        spawn_biped,
+        controllers_delayed,
+        rviz_delayed
     ])

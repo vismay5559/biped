@@ -17,6 +17,23 @@ add_executable(biped_stand_controller
   src/biped_stand_controller.cpp
 )
 
+# Add the new executable
+add_executable(biped_walker src/biped_walker.cpp)
+
+# Link dependencies
+ament_target_dependencies(biped_walker
+  rclcpp
+  rclcpp_action
+  control_msgs
+  trajectory_msgs
+)
+
+# Install the executable so "ros2 run" can see it
+install(TARGETS
+  biped_walker
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 ament_target_dependencies(biped_stand_controller
   rclcpp
   rclcpp_action
