@@ -43,7 +43,7 @@ def generate_launch_description():
         arguments=[
             '-name', 'biped',
             '-topic', '/robot_description',
-            '-z', '0.95'
+            '-z', '0.65'
         ],
         output='screen'
     )
@@ -69,9 +69,37 @@ def generate_launch_description():
         actions=[spawn_jsb, spawn_biped_ctrl]
     )
 
+    rviz = Node(
+    package='rviz2',
+    executable='rviz2',
+    arguments=['-d',
+        os.path.join(pkg_description, 'rviz', 'display.rviz')],
+    parameters=[{'use_sim_time': True}],
+    output='screen'
+    )
+
+    rviz_delayed = TimerAction(
+        period=5.0,   # wait for /tf
+        actions=[rviz]
+    )
+
+    ros_gz_bridge = Node(
+    package='ros_gz_bridge',
+    executable='parameter_bridge',
+    arguments=[
+        '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+        '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',
+        '/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V'
+    ],
+    output='screen'
+)
+
+
     return LaunchDescription([
+        ros_gz_bridge,
         gazebo,
         robot_state_publisher,
         spawn_biped,
-        controllers_delayed
+        controllers_delayed,
+        rviz_delayed
     ])
