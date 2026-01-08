@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
 <robot name="biped" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-
 <xacro:include filename="$(find biped_description)/urdf/robots/materials.xacro" />
 <xacro:include filename="$(find biped_description)/urdf/robots/biped.ros2control" />
 <xacro:include filename="$(find biped_description)/urdf/robots/biped.gazebo" />

@@ -1,19 +1,13 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- ========================================================= -->
-  <!-- ros2_control hardware specification for BIPED -->
-  <!-- ========================================================= -->
-
+  <!-- ================= ros2_control ================= -->
   <ros2_control name="BipedSystem" type="system">
-
-    <!-- Gazebo simulated hardware -->
     <hardware>
       <plugin>gz_ros2_control/GazeboSimSystem</plugin>
     </hardware>
 
-    <!-- ================= LEFT LEG (ACTUATED) ================= -->
-
+    <!-- LEFT LEG -->
     <joint name="l_abduction">
       <command_interface name="position"/>
       <state_interface name="position"/>
@@ -32,8 +26,13 @@
       <state_interface name="velocity"/>
     </joint>
 
-    <!-- ================= RIGHT LEG (ACTUATED) ================= -->
+    <joint name="l_foot_roll">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
 
+    <!-- RIGHT LEG -->
     <joint name="r_abduction">
       <command_interface name="position"/>
       <state_interface name="position"/>
@@ -52,11 +51,23 @@
       <state_interface name="velocity"/>
     </joint>
 
-    <!-- ================= PASSIVE JOINTS ================= -->
-    <!-- Feet are intentionally NOT listed -->
-    <!-- left_foot_roll, right_foot_roll -->
-    <!-- Passive joints are handled kinematically -->
-
+    <joint name="r_foot_roll">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
   </ros2_control>
+
+  <!-- ================= GAZEBO JOINT BINDINGS ================= -->
+
+  <gazebo reference="l_abduction"><provideFeedback>true</provideFeedback></gazebo>
+  <gazebo reference="l_hip_roll"><provideFeedback>true</provideFeedback></gazebo>
+  <gazebo reference="l_knee_roll"><provideFeedback>true</provideFeedback></gazebo>
+  <gazebo reference="l_foot_roll"><provideFeedback>true</provideFeedback></gazebo>
+
+  <gazebo reference="r_abduction"><provideFeedback>true</provideFeedback></gazebo>
+  <gazebo reference="r_hip_roll"><provideFeedback>true</provideFeedback></gazebo>
+  <gazebo reference="r_knee_roll"><provideFeedback>true</provideFeedback></gazebo>
+  <gazebo reference="r_foot_roll"><provideFeedback>true</provideFeedback></gazebo>
 
 </robot>

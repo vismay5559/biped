@@ -1,21 +1,17 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<gazebo>
-  <plugin
-    filename="gz_ros2_control-system"
-    name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+  <gazebo>
+    <plugin
+      filename="gz_ros2_control-system"
+      name="gz_ros2_control::GazeboSimROS2ControlPlugin">
 
-    <parameters>
-      $(find biped_moveit_config)/config/biped/ros2_controllers.yaml
-    </parameters>
+      <!-- IMPORTANT: absolute path avoids find()/env issues -->
+      <parameters>
+        /home/vismay/ros2_ws/install/biped_moveit_config/share/biped_moveit_config/config/biped/ros2_controllers.yaml
+      </parameters>
 
-    <ros>
-      <remapping>/controller_manager/robot_description:=/robot_description</remapping>
-    </ros>
-
-  </plugin>
-</gazebo>
-
+    </plugin>
+  </gazebo>
 
 </robot>

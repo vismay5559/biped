@@ -1,28 +1,26 @@
 controller_manager:
   ros__parameters:
     update_rate: 200
+    use_sim_time: true
 
-    # Publishes /joint_states for ALL joints (including passive ones)
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    # Controls ONLY actuated joints
-    leg_controller:
+    biped_joint_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
 
-leg_controller:
+biped_joint_trajectory_controller:
   ros__parameters:
     joints:
-      # LEFT LEG
       - l_abduction
       - l_hip_roll
       - l_knee_roll
-
-      # RIGHT LEG
+      - l_foot_roll
       - r_abduction
       - r_hip_roll
       - r_knee_roll
+      - r_foot_roll
 
     command_interfaces:
       - position
@@ -31,6 +29,4 @@ leg_controller:
       - position
       - velocity
 
-    open_loop_control: false
-    allow_integration_in_goal_trajectories: true
-    allow_nonzero_velocity_at_trajectory_end: false
+    allow_partial_joints_goal: true
