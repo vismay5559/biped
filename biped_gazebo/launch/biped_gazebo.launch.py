@@ -89,11 +89,22 @@ def generate_launch_description():
     arguments=[
         '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
         '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',
-        '/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V'
+        '/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
+        '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU'
     ],
     output='screen'
-)
-
+    )
+    
+    stand_controller = TimerAction(
+        period=8.0,  # seconds
+        actions=[
+            Node(
+                package='biped_system_tests',
+                executable='biped_stand_controller',
+                output='screen'
+            )
+        ]
+    )
 
     return LaunchDescription([
         ros_gz_bridge,
@@ -101,5 +112,6 @@ def generate_launch_description():
         robot_state_publisher,
         spawn_biped,
         controllers_delayed,
+        stand_controller,
         rviz_delayed
     ])

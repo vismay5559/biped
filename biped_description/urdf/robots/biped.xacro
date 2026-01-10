@@ -214,7 +214,7 @@
 </link>
 
 <joint name="l_abduction" type="revolute">
-  <limit lower="-2.5" upper="0.0" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
   <origin xyz="-0.05986 -0.04025 -0.0003" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="l_hip_link_1"/>
@@ -223,7 +223,7 @@
 </joint>
 
 <joint name="l_hip_roll" type="revolute">
-  <limit lower="-2.5" upper="0.0" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
   <origin xyz="-0.042 0.040277 4.4e-05" rpy="0 0 0"/>
   <parent link="l_hip_link_1"/>
   <child link="l_hip_roll__1"/>
@@ -232,7 +232,7 @@
 </joint>
 
 <joint name="l_knee_roll" type="revolute">
-  <limit lower="-2.5" upper="0.0" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
   <origin xyz="-0.047484 0.063923 -0.222186" rpy="0 0 0"/>
   <parent link="l_hip_roll__1"/>
   <child link="l_knee_link_1"/>
@@ -241,7 +241,7 @@
 </joint>
 
 <joint name="l_foot_roll" type="revolute">
-  <limit lower="-2.5" upper="0.0" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
   <origin xyz="-0.02 -0.063862 -0.204573" rpy="0 0 0"/>
   <parent link="l_knee_link_1"/>
   <child link="l_foot_link__1"/>
@@ -250,7 +250,7 @@
 </joint>
 
 <joint name="r_abduction" type="revolute">
-  <limit lower="-2.5" upper="0.0" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
   <origin xyz="-0.00014 -0.04025 -0.0003" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="r_hip_link_1"/>
@@ -259,7 +259,7 @@
 </joint>
 
 <joint name="r_hip_roll" type="revolute">
-  <limit lower="-2.5" upper="0.0" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
   <origin xyz="0.042 0.040277 4.4e-05" rpy="0 0 0"/>
   <parent link="r_hip_link_1"/>
   <child link="r_hip_roll__1"/>
@@ -268,7 +268,7 @@
 </joint>
 
 <joint name="r_knee_roll" type="revolute">
-  <limit lower="-2.5" upper="0.0" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
   <origin xyz="0.047484 0.063923 -0.222186" rpy="0 0 0"/>
   <parent link="r_hip_roll__1"/>
   <child link="r_knee_link_1"/>
@@ -277,12 +277,24 @@
 </joint>
 
 <joint name="r_foot_roll" type="revolute">
-  <limit lower="-2.5" upper="0.0" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
   <origin xyz="0.02 -0.063862 -0.204573" rpy="0 0 0"/>
   <parent link="r_knee_link_1"/>
   <child link="r_foot_link__1"/>
   <axis xyz="-1.0 0.0 0.0"/>
   <dynamics damping="0.5" friction="0.1"/>
 </joint>
+
+
+<gazebo reference="base_link">
+  <sensor name="biped_imu" type="imu">
+    <always_on>true</always_on>
+    <update_rate>100</update_rate>
+    <visualize>true</visualize>
+    <topic>imu</topic>
+    <plugin name="gz::sim::systems::Imu" filename="gz-sim-imu-system">
+    </plugin>
+  </sensor>
+</gazebo>
 
 </robot>

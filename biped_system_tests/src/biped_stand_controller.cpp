@@ -19,8 +19,8 @@ public:
                     "r_abduction", "r_hip_roll", "r_knee_roll", "r_foot_roll"};
 
     // Mirrored values: Left negative, Right positive to move physically same way 
-    stand_pose_ = {0.0, 10, 0.8, 0,   // Left Leg
-                   0.0,  10,  0.8,  0};  // Right Leg (Mirrored)
+    stand_pose_ = {0.0, -0.2 , 0.2, 0.0,   // Left Leg
+                   0.0,  0.2,  -0.2,  0.0};  // Right Leg (Mirrored)
 
     timer_ = this->create_wall_timer(500ms, std::bind(&BipedStandController::send_stand, this));
   }

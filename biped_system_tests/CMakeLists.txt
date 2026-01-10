@@ -11,6 +11,8 @@ find_package(rclcpp REQUIRED)
 find_package(rclcpp_action REQUIRED)
 find_package(control_msgs REQUIRED)
 find_package(trajectory_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 
 # Build the executable
 add_executable(biped_stand_controller
@@ -46,6 +48,12 @@ install(TARGETS
   biped_stand_controller
   DESTINATION lib/${PROJECT_NAME}
 )
+
+add_executable(biped_closed_loop src/biped_closed_loop_walker.cpp)
+
+ament_target_dependencies(biped_closed_loop rclcpp rclcpp_action control_msgs trajectory_msgs sensor_msgs tf2 tf2_geometry_msgs)
+
+install(TARGETS biped_closed_loop DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

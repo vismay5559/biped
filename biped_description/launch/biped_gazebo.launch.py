@@ -96,11 +96,24 @@ def generate_launch_description():
         actions=[rviz]
     )
 
+    biped_stand = Node(
+        package='biped_system_tests',
+        executable='biped_stand_controller',
+        output='screen'
+    )
+
+    delayed_biped_stand = TimerAction(
+        period=1.0,  # seconds
+        actions=[biped_stand]
+    )
+
+
     return LaunchDescription([
         ros_gz_bridge,
         gazebo,
         robot_state_publisher,
         spawn_biped,
         controllers_delayed,
+        delayed_biped_stand,
         rviz_delayed
     ])
