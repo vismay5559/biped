@@ -15,11 +15,10 @@ biped_joint_trajectory_controller:
       - l_abduction
       - l_hip_roll
       - l_knee_roll
-      - l_foot_roll
       - r_abduction
       - r_hip_roll
       - r_knee_roll
-      - r_foot_roll
+      
 
     command_interfaces:
       - position
@@ -34,8 +33,7 @@ biped_joint_trajectory_controller:
       l_abduction: {p: 1000.0, i: 10.0, d: 20.0}
       l_hip_roll:  {p: 2500.0, i: 10.0, d: 40.0}
       l_knee_roll: {p: 2500.0, i: 10.0, d: 40.0}
-      l_foot_roll: {p: 1000.0, i: 10.0, d: 20.0}
       r_abduction: {p: 1000.0, i: 10.0, d: 20.0}
       r_hip_roll:  {p: 2500.0, i: 10.0, d: 40.0}
       r_knee_roll: {p: 2500.0, i: 10.0, d: 40.0}
-      r_foot_roll: {p: 1000.0, i: 10.0, d: 20.0}
+     

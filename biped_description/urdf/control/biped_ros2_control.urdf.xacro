@@ -42,17 +42,6 @@
       <state_interface name="velocity"/>
     </joint>
 
-    <joint name="l_foot_roll">
-    <command_interface name="position"/>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
-
-    <joint name="r_foot_roll">
-    <command_interface name="position"/>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
 
   </ros2_control>
 
@@ -60,11 +49,11 @@
   <gazebo reference="l_abduction"><provideFeedback>true</provideFeedback></gazebo>
   <gazebo reference="l_hip_roll"><provideFeedback>true</provideFeedback></gazebo>
   <gazebo reference="l_knee_roll"><provideFeedback>true</provideFeedback></gazebo>
-  <gazebo reference="l_foot_roll"><provideFeedback>true</provideFeedback></gazebo>
+  
 
   <gazebo reference="r_abduction"><provideFeedback>true</provideFeedback></gazebo>
   <gazebo reference="r_hip_roll"><provideFeedback>true</provideFeedback></gazebo>
   <gazebo reference="r_knee_roll"><provideFeedback>true</provideFeedback></gazebo>
-  <gazebo reference="r_foot_roll"><provideFeedback>true</provideFeedback></gazebo>
-  
+
+
 </robot>

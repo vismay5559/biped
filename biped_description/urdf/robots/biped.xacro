@@ -7,214 +7,155 @@
 <xacro:include filename="$(find biped_description)/urdf/control/biped_ros2_control.urdf.xacro"/>
 <xacro:include filename="$(find biped_description)/urdf/control/gazebo_sim_ros2_control.urdf.xacro"/>
 
-<link name="base_footprint"/>
-
-<joint name="base_joint" type="fixed">
-  <parent link="base_footprint"/>
-  <child link="base_link"/>
-  <origin xyz="0 0 0" rpy="0 0 0"/>
-</joint>
-
 <link name="base_link">
   <inertial>
-    <origin xyz="-0.0300 -0.0597 0.0048" rpy="0 0 0"/>
-    <mass value="0.596469253198544"/>
-    <inertia ixx="0.000407" iyy="0.001026" izz="0.000804" ixy="0.0" iyz="1.4e-05" ixz="0.0"/>
+    <origin xyz="-0.030000000000000387 -0.057942318207656995 0.0017019536789480547" rpy="0 0 0"/>
+    <mass value="0.44745204814551776"/>
+    <inertia ixx="0.000206" iyy="0.000653" izz="0.000555" ixy="0.0" iyz="7e-06" ixz="0.0"/>
   </inertial>
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
   </collision>
 </link>
 
 <link name="l_hip_link_1">
   <inertial>
-    <origin xyz="-0.0219 0.0369 3.38e-05" rpy="0 0 0"/>
-    <mass value="0.23839991097458857"/>
-    <inertia ixx="0.000111" iyy="8.4e-05" izz="0.00011" ixy="1e-05" iyz="0.0" ixz="0.0"/>
+    <origin xyz="-0.02430149749802596 0.03928146808593846 3.6807072151787015e-05" rpy="0 0 0"/>
+    <mass value="0.20396927834762796"/>
+    <inertia ixx="8.1e-05" iyy="6.1e-05" izz="7.1e-05" ixy="4e-06" iyz="0.0" ixz="0.0"/>
   </inertial>
   <visual>
     <origin xyz="0.05986 0.04025 0.0003" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/l_hip_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/l_hip_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.05986 0.04025 0.0003" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/l_hip_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/l_hip_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
   </collision>
 </link>
 
 <link name="l_hip_roll__1">
   <inertial>
-    <origin xyz="-0.0289 0.0315 -0.0777" rpy="0 0 0"/>
-    <mass value="0.4778310159751661"/>
-    <inertia ixx="0.00221" iyy="0.002059" izz="0.000339" ixy="2.1e-05" iyz="0.000441" ixz="-0.000105"/>
+    <origin xyz="-0.02596578877638181 0.040055930981735204 -0.06312890393675653" rpy="0 0 0"/>
+    <mass value="0.28302671867800727"/>
+    <inertia ixx="0.000807" iyy="0.000697" izz="0.0002" ixy="1.4e-05" iyz="0.000225" ixz="-4.3e-05"/>
   </inertial>
   <visual>
     <origin xyz="0.10186 -2.7e-05 0.000256" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/l_hip_roll__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/l_hip_roll__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-   <origin xyz="0.10186 -2.7e-05 0.000256" rpy="0 0 0"/>
+    <origin xyz="0.10186 -2.7e-05 0.000256" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/l_hip_roll__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/l_hip_roll__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
   </collision>
 </link>
 
 <link name="l_knee_link_1">
   <inertial>
-    <origin xyz="-0.0195 -0.0292 -0.0934" rpy="0 0 0"/>
-    <mass value="0.10721414059204377"/>
-    <inertia ixx="0.000512" iyy="0.000465" izz="5.9e-05" ixy="-2e-06" iyz="-0.000141" ixz="-5e-06"/>
+    <origin xyz="-0.019576444185569586 -0.05041258328103008 -0.10359275990065434" rpy="0 0 0"/>
+    <mass value="0.0412087002638959"/>
+    <inertia ixx="0.000249" iyy="0.000199" izz="5.4e-05" ixy="-1e-06" iyz="-9.3e-05" ixz="-2e-06"/>
   </inertial>
   <visual>
-    <origin xyz="0.149344 -0.06395 0.222442" rpy="0 0 0"/>
+    <origin xyz="0.149344 -0.09425 0.211384" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/l_knee_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/l_knee_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="0.149344 -0.06395 0.222442" rpy="0 0 0"/>
+    <origin xyz="0.149344 -0.09425 0.211384" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/l_knee_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/l_knee_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
-  </collision>
-</link>
-
-<link name="l_foot_link__1">
-  <inertial>
-    <origin xyz="0 0.00001 -0.007" rpy="0 0 0"/>
-    <mass value="0.01758935163575521"/>
-    <inertia ixx="1.4e-05" iyy="1e-06" izz="1.4e-05" ixy="0.0" iyz="0.0" ixz="0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="0.169344 -8.8e-05 0.427015" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/l_foot_link__1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0.169344 -8.8e-05 0.427015" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/l_foot_link__1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
   </collision>
 </link>
 
 <link name="r_hip_link_1">
   <inertial>
-    <origin xyz="0.0219 0.0369 3.38e-05" rpy="0 0 0"/>
-    <mass value="0.2383999109745883"/>
-    <inertia ixx="0.000111" iyy="8.4e-05" izz="0.00011" ixy="-1e-05" iyz="0.0" ixz="-0.0"/>
+    <origin xyz="0.02430149749802586 0.03928146808593818 3.680707215000177e-05" rpy="0 0 0"/>
+    <mass value="0.20396927834762757"/>
+    <inertia ixx="8.1e-05" iyy="6.1e-05" izz="7.1e-05" ixy="-4e-06" iyz="0.0" ixz="-0.0"/>
   </inertial>
   <visual>
     <origin xyz="0.00014 0.04025 0.0003" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/r_hip_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/r_hip_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-   <origin xyz="0.00014 0.04025 0.0003" rpy="0 0 0"/>
+    <origin xyz="0.00014 0.04025 0.0003" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/r_hip_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/r_hip_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
   </collision>
 </link>
 
 <link name="r_hip_roll__1">
   <inertial>
-    <origin xyz="0.0289 0.0315 -0.0777" rpy="0 0 0"/>
-    <mass value="0.47783101597516553"/>
-    <inertia ixx="0.00221" iyy="0.002059" izz="0.000339" ixy="-2.1e-05" iyz="0.000441" ixz="0.000105"/>
+    <origin xyz="0.025965788776379665 0.040055930981735106 -0.06312890393675963" rpy="0 0 0"/>
+    <mass value="0.2830267186780068"/>
+    <inertia ixx="0.000807" iyy="0.000697" izz="0.0002" ixy="-1.4e-05" iyz="0.000225" ixz="4.3e-05"/>
   </inertial>
   <visual>
     <origin xyz="-0.04186 -2.7e-05 0.000256" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/r_hip_roll__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/r_hip_roll__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.04186 -2.7e-05 0.000256" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/r_hip_roll__1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/r_hip_roll__1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
   </collision>
 </link>
 
 <link name="r_knee_link_1">
   <inertial>
-    <origin xyz="0.0195 -0.0292 -0.0934" rpy="0 0 0"/>
-    <mass value="0.10721414059204377"/>
-    <inertia ixx="0.000512" iyy="0.000465" izz="5.9e-05" ixy="2e-06" iyz="-0.000141" ixz="5e-06"/>
+    <origin xyz="0.01957644594988535 -0.05041114422946669 -0.10359401216545042" rpy="0 0 0"/>
+    <mass value="0.04120867834471891"/>
+    <inertia ixx="0.000249" iyy="0.000199" izz="5.4e-05" ixy="1e-06" iyz="-9.3e-05" ixz="2e-06"/>
   </inertial>
   <visual>
-    <origin xyz="-0.089344 -0.06395 0.222442" rpy="0 0 0"/>
+    <origin xyz="-0.089344 -0.09425 0.211384" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/r_knee_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/r_knee_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="-0.089344 -0.06395 0.222442" rpy="0 0 0"/>
+    <origin xyz="-0.089344 -0.09425 0.211384" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/r_knee_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find biped_description)/meshes/r_knee_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
-  </collision>
-</link>
-
-<link name="r_foot_link__1">
-  <inertial>
-    <origin xyz="0 0.00001 -0.007" rpy="0 0 0"/>
-    <mass value="0.01758928525196201"/>
-    <inertia ixx="1.4e-05" iyy="1e-06" izz="1.4e-05" ixy="0.0" iyz="0.0" ixz="0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="-0.109344 -8.8e-05 0.427015" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/r_foot_link__1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="-0.109344 -8.8e-05 0.427015" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="file://$(find biped_description)/meshes/biped_280/visual/r_foot_link__1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
   </collision>
 </link>
 
 <joint name="l_abduction" type="revolute">
-  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="4.1" velocity="45.5"/>
   <origin xyz="-0.05986 -0.04025 -0.0003" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="l_hip_link_1"/>
@@ -223,7 +164,7 @@
 </joint>
 
 <joint name="l_hip_roll" type="revolute">
-  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="4.1" velocity="45.5"/>
   <origin xyz="-0.042 0.040277 4.4e-05" rpy="0 0 0"/>
   <parent link="l_hip_link_1"/>
   <child link="l_hip_roll__1"/>
@@ -232,7 +173,7 @@
 </joint>
 
 <joint name="l_knee_roll" type="revolute">
-  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="4.1" velocity="45.5"/>
   <origin xyz="-0.047484 0.063923 -0.222186" rpy="0 0 0"/>
   <parent link="l_hip_roll__1"/>
   <child link="l_knee_link_1"/>
@@ -240,17 +181,9 @@
   <dynamics damping="0.5" friction="0.1"/>
 </joint>
 
-<joint name="l_foot_roll" type="revolute">
-  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
-  <origin xyz="-0.02 -0.063862 -0.204573" rpy="0 0 0"/>
-  <parent link="l_knee_link_1"/>
-  <child link="l_foot_link__1"/>
-  <axis xyz="-1.0 0.0 0.0"/>
-  <dynamics damping="0.5" friction="0.1"/>
-</joint>
 
 <joint name="r_abduction" type="revolute">
-  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="4.1" velocity="45.5"/>
   <origin xyz="-0.00014 -0.04025 -0.0003" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="r_hip_link_1"/>
@@ -259,7 +192,7 @@
 </joint>
 
 <joint name="r_hip_roll" type="revolute">
-  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="4.1" velocity="45.5"/>
   <origin xyz="0.042 0.040277 4.4e-05" rpy="0 0 0"/>
   <parent link="r_hip_link_1"/>
   <child link="r_hip_roll__1"/>
@@ -268,7 +201,7 @@
 </joint>
 
 <joint name="r_knee_roll" type="revolute">
-  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
+  <limit lower="-2.5" upper="2.5" effort="4.1" velocity="45.5"/>
   <origin xyz="0.047484 0.063923 -0.222186" rpy="0 0 0"/>
   <parent link="r_hip_roll__1"/>
   <child link="r_knee_link_1"/>
@@ -276,15 +209,16 @@
   <dynamics damping="0.5" friction="0.1"/>
 </joint>
 
-<joint name="r_foot_roll" type="revolute">
-  <limit lower="-2.5" upper="2.5" effort="50" velocity="5"/>
-  <origin xyz="0.02 -0.063862 -0.204573" rpy="0 0 0"/>
-  <parent link="r_knee_link_1"/>
-  <child link="r_foot_link__1"/>
-  <axis xyz="-1.0 0.0 0.0"/>
-  <dynamics damping="0.5" friction="0.1"/>
-</joint>
 
+<gazebo reference="l_foot_link__1">
+  <mu1>0.6</mu1>
+  <mu2>0.6</mu2>
+</gazebo>
+
+<gazebo reference="r_foot_link__1">
+  <mu1>0.6</mu1>
+  <mu2>0.6</mu2>
+</gazebo>
 
 <gazebo reference="base_link">
   <sensor name="biped_imu" type="imu">

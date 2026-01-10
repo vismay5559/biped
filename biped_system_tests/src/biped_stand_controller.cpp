@@ -15,12 +15,15 @@ public:
   BipedStandController() : Node("biped_stand_controller") {
     client_ = rclcpp_action::create_client<FollowJT>(this, "/biped_joint_trajectory_controller/follow_joint_trajectory");
     
-    joint_names_ = {"l_abduction", "l_hip_roll", "l_knee_roll", "l_foot_roll",
-                    "r_abduction", "r_hip_roll", "r_knee_roll", "r_foot_roll"};
+    joint_names_ = {"l_abduction", "l_hip_roll", "l_knee_roll", 
+                    "r_abduction", "r_hip_roll", "r_knee_roll"};
 
     // Mirrored values: Left negative, Right positive to move physically same way 
-    stand_pose_ = {0.0, -0.2 , 0.2, 0.0,   // Left Leg
-                   0.0,  0.2,  -0.2,  0.0};  // Right Leg (Mirrored)
+    // stand_pose_ = {0.0, -0.4 , 0.4,   // Left Leg
+    //                0.0,  0.4,  -0.4};  // Right Leg (Mirrored)
+
+    stand_pose_ = {0.0, -0.1 , 0.1,   // Left Leg
+                   0.0,  0.1,  -0.1};  // Right Leg (Mirrored)
 
     timer_ = this->create_wall_timer(500ms, std::bind(&BipedStandController::send_stand, this));
   }
