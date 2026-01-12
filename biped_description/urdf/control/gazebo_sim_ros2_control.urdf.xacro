@@ -10,7 +10,7 @@
       <parameters>
         /home/vismay/ros2_ws/install/biped_moveit_config/share/biped_moveit_config/config/biped/ros2_controllers.yaml
       </parameters>
-
+      <hold_joints>false</hold_joints> 
     </plugin>
   </gazebo>
 

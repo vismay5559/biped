@@ -1,6 +1,6 @@
 controller_manager:
   ros__parameters:
-    update_rate: 200
+    update_rate: 1000
     use_sim_time: true
 
     joint_state_broadcaster:
@@ -10,7 +10,7 @@ controller_manager:
       type: joint_trajectory_controller/JointTrajectoryController
 
 biped_joint_trajectory_controller:
-  ros__parameters:
+  ros__parameters: # Everything below MUST be indented under here
     joints:
       - l_abduction
       - l_hip_roll
@@ -19,21 +19,24 @@ biped_joint_trajectory_controller:
       - r_hip_roll
       - r_knee_roll
       
-
     command_interfaces:
-      - position
+      - effort
+
     state_interfaces:
       - position
       - velocity
 
     allow_partial_joints_goal: true
 
-    # 🔴 ADDED GAINS SECTION
+    # FIX: Indent 'gains' so it is inside 'ros__parameters'
     gains:
-      l_abduction: {p: 1000.0, i: 10.0, d: 20.0}
-      l_hip_roll:  {p: 2500.0, i: 10.0, d: 40.0}
-      l_knee_roll: {p: 2500.0, i: 10.0, d: 40.0}
-      r_abduction: {p: 1000.0, i: 10.0, d: 20.0}
-      r_hip_roll:  {p: 2500.0, i: 10.0, d: 40.0}
-      r_knee_roll: {p: 2500.0, i: 10.0, d: 40.0}
-     
+      l_abduction: {p: 850.0, i: 0.0, d: 1.0}
+      l_hip_roll:  {p: 850.0, i: 0.0, d: 1.0}
+      l_knee_roll: {p: 850.0, i: 0.0, d: 1.0}
+      r_abduction: {p: 850.0, i: 0.0, d: 1.0}
+      r_hip_roll:  {p: 850.0, i: 0.0, d: 1.0}
+      r_knee_roll: {p: 850.0, i: 0.0, d: 1.0}
+
+    # FIX: Indent these as well
+    open_loop_control: false
+    stopped_velocity_tolerance: 0.01

@@ -213,11 +213,15 @@
 <gazebo reference="l_foot_link__1">
   <mu1>0.6</mu1>
   <mu2>0.6</mu2>
+  <kp>500000</kp>     <!-- contact stiffness -->
+  <kd>2000</kd>       <!-- contact damping -->
 </gazebo>
 
 <gazebo reference="r_foot_link__1">
   <mu1>0.6</mu1>
   <mu2>0.6</mu2>
+  <kp>500000</kp>
+  <kd>2000</kd>
 </gazebo>
 
 <gazebo reference="base_link">

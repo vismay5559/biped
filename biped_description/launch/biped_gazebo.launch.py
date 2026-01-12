@@ -35,18 +35,22 @@ def generate_launch_description():
         }]
     )
 
-    # Spawn Robot
     spawn_biped = Node(
-        package='ros_gz_sim',
-        executable='create',
-        arguments=[
-            '-name', 'biped',
-            '-topic', '/robot_description',
-            '-z', '0.65',
-            '-allow_renaming', 'true'
-        ],
-        output='screen'
-    )
+            package='ros_gz_sim',
+            executable='create',
+            arguments=[
+                '-name', 'biped',
+                '-topic', '/robot_description',
+                '-z', '0.65', # Slightly lower so it doesn't drop far
+                # Left Leg Crouch
+                '-J', 'l_hip_roll', '0.0',
+                '-J', 'l_knee_roll', '0.0',
+                # Right Leg Crouch
+                '-J', 'r_hip_roll', '0.0',
+                '-J', 'r_knee_roll', '0.0'
+            ],
+            output='screen'
+        )
 
     # ROS-GZ Bridge - Updated with IMU mapping
     ros_gz_bridge = Node(
@@ -78,7 +82,7 @@ def generate_launch_description():
     )
 
     controllers_delayed = TimerAction(
-        period=5.0,
+        period=3.0,
         actions=[spawn_jsb, spawn_biped_ctrl]
     )
 
@@ -92,7 +96,7 @@ def generate_launch_description():
     )
 
     rviz_delayed = TimerAction(
-        period=7.0,
+        period=6.0,
         actions=[rviz]
     )
 
@@ -103,7 +107,7 @@ def generate_launch_description():
     )
 
     delayed_biped_stand = TimerAction(
-        period=1.0,  # seconds
+        period=11.0,  # seconds
         actions=[biped_stand]
     )
 

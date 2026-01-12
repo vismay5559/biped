@@ -18,14 +18,14 @@ public:
     joint_names_ = {"l_abduction", "l_hip_roll", "l_knee_roll", 
                     "r_abduction", "r_hip_roll", "r_knee_roll"};
 
-    // Mirrored values: Left negative, Right positive to move physically same way 
-    // stand_pose_ = {0.0, -0.4 , 0.4,   // Left Leg
-    //                0.0,  0.4,  -0.4};  // Right Leg (Mirrored)
-
+    //Mirrored values: Left negative, Right positive to move physically same way 
     stand_pose_ = {0.0, -0.1 , 0.1,   // Left Leg
                    0.0,  0.1,  -0.1};  // Right Leg (Mirrored)
 
-    timer_ = this->create_wall_timer(500ms, std::bind(&BipedStandController::send_stand, this));
+    // stand_pose_ = {0.0, 0.0 , 0.0,   // Left Leg
+    //                0.0,  0.0,  0.0};  // Right Leg (Mirrored)
+
+    timer_ = this->create_wall_timer(10ms, std::bind(&BipedStandController::send_stand, this));
   }
 
 private:
@@ -38,9 +38,9 @@ private:
 
     trajectory_msgs::msg::JointTrajectoryPoint p;
     p.positions = stand_pose_;
-    // Fast timing (0.5s) to beat gravity 
-    p.time_from_start.sec = 0;
-    p.time_from_start.nanosec = 500000000; 
+// 2. Reduce trajectory time to 100ms so the motors snap to position instantly
+  p.time_from_start.sec = 0;
+  p.time_from_start.nanosec = 500000000; // 0.1s instead of 0.5s
 
     goal_msg.trajectory.points.push_back(p);
     client_->async_send_goal(goal_msg);
