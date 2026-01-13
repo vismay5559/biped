@@ -30,12 +30,12 @@ biped_joint_trajectory_controller:
 
     # FIX: Indent 'gains' so it is inside 'ros__parameters'
     gains:
-      l_abduction: {p: 850.0, i: 0.0, d: 1.0}
-      l_hip_roll:  {p: 850.0, i: 0.0, d: 1.0}
-      l_knee_roll: {p: 850.0, i: 0.0, d: 1.0}
-      r_abduction: {p: 850.0, i: 0.0, d: 1.0}
-      r_hip_roll:  {p: 850.0, i: 0.0, d: 1.0}
-      r_knee_roll: {p: 850.0, i: 0.0, d: 1.0}
+      l_abduction: {p: 30.0, i: 0.0, d: 0.25}
+      l_hip_roll:  {p: 30.0, i: 0.0, d: 0.25}
+      l_knee_roll: {p: 30.0, i: 0.0, d: 0.25}
+      r_abduction: {p: 30.0, i: 0.0, d: 0.25}
+      r_hip_roll:  {p: 30.0, i: 0.0, d: 0.25}
+      r_knee_roll: {p: 30.0, i: 0.0, d: 0.25}
 
     # FIX: Indent these as well
     open_loop_control: false

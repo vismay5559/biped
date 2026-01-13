@@ -41,14 +41,14 @@ def generate_launch_description():
                 '-name', 'biped',
                 '-topic', '/robot_description',
                 '-z', '0.5', # Lower z slightly so feet touch ground immediately
-                # # Left Leg (Matches your C++ Stand Pose)
-                # '-J', 'l_abduction', '0.0',
-                # '-J', 'l_hip_roll', '-0.1',
-                # '-J', 'l_knee_roll', '0.1',
-                # # Right Leg (Matches your C++ Stand Pose)
-                # '-J', 'r_abduction', '0.0',
-                # '-J', 'r_hip_roll', '0.1',
-                # '-J', 'r_knee_roll', '-0.1'
+                # Left Leg (Matches your C++ Stand Pose)
+                '-J', 'l_abduction', '0.0',
+                '-J', 'l_hip_roll', '-0.1',
+                '-J', 'l_knee_roll', '0.1',
+                # Right Leg (Matches your C++ Stand Pose)
+                '-J', 'r_abduction', '0.0',
+                '-J', 'r_hip_roll', '0.1',
+                '-J', 'r_knee_roll', '-0.1'
             ],
             output='screen'
         )
@@ -88,7 +88,7 @@ def generate_launch_description():
     )
 
     controllers_delayed = TimerAction(
-        period=3.0,
+        period=1.0,
         actions=[spawn_jsb, spawn_biped_ctrl]
     )
 
@@ -106,16 +106,16 @@ def generate_launch_description():
         actions=[rviz]
     )
 
-    # biped_stand = Node(
-    #     package='biped_system_tests',
-    #     executable='biped_stand_controller',
-    #     output='screen'
-    # )
+    biped_stand = Node(
+        package='biped_system_tests',
+        executable='biped_stand_controller',
+        output='screen'
+    )
 
-    # delayed_biped_stand = TimerAction(
-    #     period=12.0,  # seconds
-    #     actions=[biped_stand]
-    # )
+    delayed_biped_stand = TimerAction(
+        period=4.0,  # seconds
+        actions=[biped_stand]
+    )
 
 
     return LaunchDescription([
@@ -124,5 +124,6 @@ def generate_launch_description():
         robot_state_publisher,
         spawn_biped,
         controllers_delayed,
+        # delayed_biped_stand,
         rviz_delayed
     ])
