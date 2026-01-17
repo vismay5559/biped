@@ -160,7 +160,7 @@
   <parent link="base_link"/>
   <child link="l_hip_link_1"/>
   <axis xyz="0.0 1.0 0.0"/>
-  <dynamics damping="0.01" friction="0.01"/>
+  <dynamics damping="0.01" friction="0.06"/>
 </joint>
 
 <joint name="l_hip_roll" type="revolute">
@@ -169,7 +169,7 @@
   <parent link="l_hip_link_1"/>
   <child link="l_hip_roll__1"/>
   <axis xyz="-1.0 0.0 0.0"/>
-  <dynamics damping="0.01" friction="0.01"/>
+  <dynamics damping="0.01" friction="0.06"/>
 </joint>
 
 <joint name="l_knee_roll" type="revolute">
@@ -178,7 +178,7 @@
   <parent link="l_hip_roll__1"/>
   <child link="l_knee_link_1"/>
   <axis xyz="-1.0 0.0 0.0"/>
-  <dynamics damping="0.01" friction="0.01"/>
+  <dynamics damping="0.01" friction="0.06"/>
 </joint>
 
 
@@ -188,7 +188,7 @@
   <parent link="base_link"/>
   <child link="r_hip_link_1"/>
   <axis xyz="0.0 1.0 0.0"/>
-  <dynamics damping="0.01" friction="0.01"/>
+  <dynamics damping="0.01" friction="0.06"/>
 </joint>
 
 <joint name="r_hip_roll" type="revolute">
@@ -197,7 +197,7 @@
   <parent link="r_hip_link_1"/>
   <child link="r_hip_roll__1"/>
   <axis xyz="1.0 0.0 0.0"/>
-  <dynamics damping="0.01" friction="0.01"/>
+  <dynamics damping="0.01" friction="0.06"/>
 </joint>
 
 <joint name="r_knee_roll" type="revolute">
@@ -206,7 +206,7 @@
   <parent link="r_hip_roll__1"/>
   <child link="r_knee_link_1"/>
   <axis xyz="1.0 0.0 0.0"/>
-  <dynamics damping="0.01" friction="0.01"/>
+  <dynamics damping="0.01" friction="0.06"/>
 </joint>
 
 

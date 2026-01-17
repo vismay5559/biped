@@ -124,6 +124,6 @@ def generate_launch_description():
         robot_state_publisher,
         spawn_biped,
         controllers_delayed,
-        # delayed_biped_stand,
+        delayed_biped_stand,
         rviz_delayed
     ])

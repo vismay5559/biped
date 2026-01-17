@@ -1,0 +1,17 @@
+moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+
+moveit_simple_controller_manager:
+  controller_names:
+    - biped_joint_trajectory_controller
+
+  biped_joint_trajectory_controller:
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - l_abduction
+      - l_hip_roll
+      - l_knee_roll
+      - r_abduction
+      - r_hip_roll
+      - r_knee_roll
