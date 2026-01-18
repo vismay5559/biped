@@ -60,7 +60,6 @@ def generate_launch_description():
         arguments=[
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
             '/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
-            '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',
             '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU'
         ],
         parameters=[{'use_sim_time': True}],
@@ -125,5 +124,5 @@ def generate_launch_description():
         spawn_biped,
         controllers_delayed,
         delayed_biped_stand,
-        rviz_delayed
+        #rviz_delayed
     ])

@@ -68,4 +68,16 @@
     <joint name="r_knee_roll" value="-0.6"/>
   </group_state>
 
+  <group_state name="stand" group="left_leg">
+    <joint name="l_abduction" value="0.0"/>
+    <joint name="l_hip_roll" value="-0.1"/>
+    <joint name="l_knee_roll" value="0.1"/>
+  </group_state>
+
+  <group_state name="stand" group="right_leg">
+    <joint name="r_abduction" value="0.0"/>
+    <joint name="r_hip_roll" value="0.1"/>
+    <joint name="r_knee_roll" value="-0.1"/>
+  </group_state>
+
 </robot>
