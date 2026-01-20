@@ -22,13 +22,13 @@ class BipedStandController(Node):
         
         # Joint names from your URDF
         self.joint_names = [
-            'l_abduction', 'l_hip_roll', 'l_knee_roll', 'l_foot_roll',
-            'r_abduction', 'r_hip_roll', 'r_knee_roll', 'r_foot_roll'
+            'l_abduction', 'l_hip_roll', 'l_knee_roll', 
+            'r_abduction', 'r_hip_roll', 'r_knee_roll'
         ]
 
         # Define a "Standing" pose (slight knee bend helps stability)
         # Sequence: [L_abd, L_hip, L_knee, L_foot, R_abd, R_hip, R_knee, R_foot]
-        self.stand_pose = [0.0, -0.2, -0.4, -0.2, 0.0, -0.2, -0.4, -0.2]
+        self.stand_pose = [0.0, -0.1, 0.1, 0.0, 0.1, -0.1]
 
         self.get_logger().info('Sending Stand Command...')
         self.send_stand_command()

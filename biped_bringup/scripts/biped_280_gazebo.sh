@@ -19,7 +19,7 @@ trap 'cleanup' SIGINT SIGTERM
 
 echo "Launching Biped Gazebo simulation..."
 
-ros2 launch biped_description biped_gazebo.launch.py \
+ros2 launch biped_gazebo biped_gazebo.launch.py \
     load_controllers:=true \
     use_rviz:=true \
     use_sim_time:=true \

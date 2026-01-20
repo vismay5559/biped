@@ -14,15 +14,10 @@ find_package(trajectory_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 
-# Build the executable
-add_executable(biped_stand_controller
-  src/biped_stand_controller.cpp
-)
-
-# Add the new executable
+# Build C++ executables
 add_executable(biped_walker src/biped_walker.cpp)
 
-# Link dependencies
+# Link dependencies for biped_walker
 ament_target_dependencies(biped_walker
   rclcpp
   rclcpp_action
@@ -30,22 +25,15 @@ ament_target_dependencies(biped_walker
   trajectory_msgs
 )
 
-# Install the executable so "ros2 run" can see it
+# Install C++ executables
 install(TARGETS
   biped_walker
   DESTINATION lib/${PROJECT_NAME}
 )
 
-ament_target_dependencies(biped_stand_controller
-  rclcpp
-  rclcpp_action
-  control_msgs
-  trajectory_msgs
-)
-
-# CRITICAL: This makes the controller "findable" by ros2 run
-install(TARGETS
-  biped_stand_controller
+# Install Python scripts
+install(PROGRAMS
+  scripts/biped_stand_controller.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
