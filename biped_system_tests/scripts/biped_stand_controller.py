@@ -28,7 +28,7 @@ class BipedStandController(Node):
 
         # Define a "Standing" pose (slight knee bend helps stability)
         # Sequence: [L_abd, L_hip, L_knee, L_foot, R_abd, R_hip, R_knee, R_foot]
-        self.stand_pose = [0.0, -0.1, 0.1, 0.0, 0.1, -0.1]
+        self.stand_pose = [0.0, -0.1, 0.1, 0.0, 0.1, -1]
 
         self.get_logger().info('Sending Stand Command...')
         self.send_stand_command()
@@ -58,3 +58,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+    9408477966

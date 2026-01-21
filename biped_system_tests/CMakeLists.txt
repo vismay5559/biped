@@ -37,6 +37,11 @@ install(PROGRAMS
   DESTINATION lib/${PROJECT_NAME}
 )
 
+install(PROGRAMS
+  scripts/com_vis.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 add_executable(biped_closed_loop src/biped_closed_loop_walker.cpp)
 
 ament_target_dependencies(biped_closed_loop rclcpp rclcpp_action control_msgs trajectory_msgs sensor_msgs tf2 tf2_geometry_msgs)

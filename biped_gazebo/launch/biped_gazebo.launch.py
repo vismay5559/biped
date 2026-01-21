@@ -48,7 +48,7 @@ def generate_launch_description():
                 # Right Leg (Matches your C++ Stand Pose)
                 '-J', 'r_abduction', '0.0',
                 '-J', 'r_hip_roll', '0.1',
-                '-J', 'r_knee_roll', '-0.1'
+                '-J', 'r_knee_roll', '-0.4'
             ],
             output='screen'
         )
@@ -124,6 +124,6 @@ def generate_launch_description():
         robot_state_publisher,
         spawn_biped,
         controllers_delayed,
-        # delayed_biped_stand,
+        #delayed_biped_stand,
         rviz_delayed
     ])
