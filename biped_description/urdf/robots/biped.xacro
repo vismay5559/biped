@@ -230,7 +230,22 @@
   <maxVel>0.1</maxVel>
 </gazebo>
 
-<gazebo reference="base_link">
+<link name="imu_link">
+  <inertial>
+    <mass value="0.001"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="1e-06" iyy="1e-06" izz="1e-06" ixy="0" iyz="0" ixz="0"/>
+  </inertial>
+</link>
+
+<joint name="imu_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+
+<gazebo reference="imu_link">
+  <gravity>true</gravity>
   <sensor name="biped_imu" type="imu">
     <always_on>true</always_on>
     <update_rate>100</update_rate>
