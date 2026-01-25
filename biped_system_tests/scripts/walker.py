@@ -26,6 +26,28 @@ MAX_REACH    = THIGH_LENGTH + SHIN_LENGTH
 TARGET_COM_HEIGHT = 0.42  
 HIP_OFFSET_Y = 0.072 
 
+def Rx(a):
+
+    ca, sa = math.cos(a), math.sin(a)
+
+    return np.array([[1, 0, 0],
+
+                     [0, ca, -sa],
+
+                     [0, sa,  ca]])
+
+
+
+def Ry(a):
+
+    ca, sa = math.cos(a), math.sin(a)
+
+    return np.array([[ ca, 0, sa],
+
+                     [  0, 1,  0],
+
+                     [-sa, 0, ca]])
+
 # ================== HELPERS ==================
 def quintic(t, T, p0, pT):
     if t <= 0.0: return p0
@@ -49,27 +71,62 @@ def euler_from_quaternion(x, y, z, w):
     
     return roll_x, pitch_y, yaw_z 
 
-def solve_leg_ik(x, y, z, is_left):
+def solve_leg_ik_matrix(x, y, z, is_left):
     l1 = THIGH_LENGTH
     l2 = SHIN_LENGTH
-    
+
+
+
+    p = np.array([x, y, z])
+
+
+
+    # 1) Abduction about x
+
     theta_abd = math.atan2(y, -z)
-    if not is_left: theta_abd = -theta_abd
-    
-    z_prime = z / math.cos(theta_abd)
-    D = math.sqrt(x**2 + z_prime**2)
-    
-    if D >= (l1 + l2): D = l1 + l2 - 0.0001
-    
+
+    if not is_left:
+
+        theta_abd = -theta_abd
+
+
+
+    # Rotate into sagittal plane (x–z)
+
+    p_sag = Rx(-theta_abd) @ p
+
+    x_p, _, z_p = p_sag
+
+
+
+    # 2) Planar IK in the x–z plane for hip/knee (about y)
+
+    D = math.sqrt(x_p**2 + z_p**2)
+
+    if D >= (l1 + l2):
+
+        D = l1 + l2 - 1e-4
+
+
+
     cos_knee = (l1**2 + l2**2 - D**2) / (2 * l1 * l2)
+
     cos_knee = max(-1.0, min(1.0, cos_knee))
+
     gamma = math.acos(cos_knee)
-    theta_knee = (math.pi - gamma)
-    
+
+    theta_knee = math.pi - gamma
+
+
+
     alpha = math.asin((l2 * math.sin(gamma)) / D)
-    beta = math.atan2(x, -z_prime)
+
+    beta = math.atan2(x_p, -z_p)
+
     theta_hip = beta + alpha
-    
+
+
+
     return theta_abd, theta_hip, theta_knee
 
 # ================== CONTROLLER NODE ==================
