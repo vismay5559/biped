@@ -5,9 +5,10 @@
   <xacro:if value="$(arg use_sim)">
     <!-- Simulation with Gazebo -->
     <ros2_control name="BipedSystem" type="system">
-      <hardware>
-        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
-      </hardware>
+    <hardware>
+    <plugin>biped_hardware_interface/ESP32HardwareInterface</plugin>
+    <param name="masterboard_port">192.168.4.1</param> 
+    </hardware>
 
       <joint name="l_abduction">
         <command_interface name="effort">
