@@ -30,7 +30,8 @@ def generate_launch_description():
             'use_sim_time': True,
             'robot_description': subprocess.check_output([
                 'xacro',
-                os.path.join(pkg_description, 'urdf', 'robots', 'biped.xacro')
+                os.path.join(pkg_description, 'urdf', 'robots', 'biped.xacro'),
+                'use_sim:=true'
             ]).decode()
         }]
     )
